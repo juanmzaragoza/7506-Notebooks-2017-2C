@@ -1,4 +1,5 @@
 *.ipynb_checkpoints
 *.swp
 
+/clases/data/flight-delays/*.csv
 /entregables/finger1/*.csv
