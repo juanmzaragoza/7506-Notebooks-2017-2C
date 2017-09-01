@@ -1,5 +1,12 @@
 *.ipynb_checkpoints
 *.swp
+*__pycache__
 
-/clases/data/flight-delays/*.csv
+/clases/data/flight-delays/*.csv*
+/clases/data/flight-delays/*.csv*
+
 /entregables/finger1/*.csv
+/entregables/finger2/*.csv*
+/entregables/guia1/student-alcohol-consumption/*.csv*
+
+*pyspark_csv.pyc
