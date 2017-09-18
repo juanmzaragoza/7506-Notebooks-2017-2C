@@ -10,3 +10,5 @@
 /entregables/guia1/student-alcohol-consumption/*.csv*
 
 *pyspark_csv.pyc
+
+/TP/data/*.csv
