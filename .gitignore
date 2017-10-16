@@ -4,6 +4,7 @@
 
 /clases/data/flight-delays/*.csv*
 /clases/data/flight-delays/*.csv*
+/clases/data/world-university-rankings/*.csv*
 
 /entregables/finger1/*.csv
 /entregables/finger2/*.csv*
