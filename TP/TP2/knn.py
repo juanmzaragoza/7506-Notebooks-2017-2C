@@ -92,19 +92,25 @@ def clean_dataset(props):
 	                             | props['place_with_parent_names'].str.contains('Bs.As. G.B.A.'))]
 
 	# queremos solo las propiedades que tienen precio y eliminamos columnas que sabemos que no son redundantes y que no nos servirian para knn
-	properties_caba = properties_caba.drop(['price_usd_per_m2','price_usd_per_m2','price_per_m2','price_aprox_usd','price_aprox_local_currency',\
-	                      'id','operation','country_name','properati_url','image_thumbnail','description','title',\
+	properties_caba = properties_caba.drop(['currency','price_usd_per_m2','price_usd_per_m2','price_per_m2','price_aprox_usd','price_aprox_local_currency',\
+	                      'id','operation','country_name','properati_url','image_thumbnail','description','title','surface_in_m2',\
 	                      'lat-lon','geonames_id','created_on'], axis = 1)
 
 	properties_caba = properties_caba[properties_caba['price'].notnull() & properties_caba['place_name'].notnull()]
 
 	# eliminamos propiedades con mas de 54 pisos
-	properties_caba = properties_caba[properties_caba['floor']<=54]
+	properties_caba = properties_caba[properties_caba['floor'] <= 54]
+	# eliminamos propiedades con mas de 9 pisos - ver analisis
+	properties_caba = properties_caba[properties_caba['rooms'] <= 9]
+	# eliminamos propiedades con mas de 2000 m2 de superficie cubierta - ver analisis
+	properties_caba = properties_caba[(properties_caba['surface_covered_in_m2'] <= 3000) & (properties_caba['surface_covered_in_m2'] >= 0)]
+	# eliminamos propiedades con mas de 2000 m2 de superficie cubierta - ver analisis
+	properties_caba = properties_caba[(properties_caba['surface_total_in_m2']<= 5000)  & (properties_caba['surface_total_in_m2'] >= 0)]
 
 	return properties_caba
 
 def encoder_attributes(data, encoder):
-	data['currency'] = encoder.fit_transform(data[['currency']])
+	#data['currency'] = encoder.fit_transform(data[['currency']])
 	data['place_name'] = encoder.fit_transform(data[['place_name']])
 	data['state_name'] = encoder.fit_transform(data[['state_name']])
 	data['place_with_parent_names'] = encoder.fit_transform(data[['place_with_parent_names']])
