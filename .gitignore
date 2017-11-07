@@ -13,3 +13,4 @@
 *pyspark_csv.pyc
 
 /TP/data/*.csv
+/TP/data/result
