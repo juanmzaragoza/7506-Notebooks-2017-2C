@@ -93,10 +93,10 @@ def clean_dataset(props):
 
 	# queremos solo las propiedades que tienen precio y eliminamos columnas que sabemos que no son redundantes y que no nos servirian para knn
 	properties_caba = properties_caba.drop(['currency','price_usd_per_m2','price_usd_per_m2','price_per_m2','price_aprox_usd','price_aprox_local_currency',\
-	                      'id','operation','country_name','properati_url','image_thumbnail','description','title','surface_in_m2',\
+	                      'id','operation','country_name','properati_url','image_thumbnail','description','title',\
 	                      'lat-lon','geonames_id','created_on'], axis = 1)
 
-	properties_caba = properties_caba[properties_caba['price'].notnull() & properties_caba['place_name'].notnull()]
+	properties_caba = properties_caba[properties_caba['price'].notnull() & properties_caba['price'] > 0 & properties_caba['place_name'].notnull()]
 
 	# eliminamos propiedades con mas de 54 pisos
 	properties_caba = properties_caba[properties_caba['floor'] <= 54]
